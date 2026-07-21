@@ -54,7 +54,7 @@ if (bookingForm) {
 
         try {
 
-            const response = await fetch("http://localhost:3000/api/bookings", {
+            const response = await fetch("https://phone-repair-backend-m1xm.onrender.com/api/bookings", {
 
                 method: "POST",
 
@@ -104,8 +104,7 @@ async function loadBookings() {
 
     try {
 
-        const response = await fetch("http://localhost:3000/api/bookings");
-
+       const response = await fetch("https://phone-repair-backend-m1xm.onrender.com/api/bookings");
         const bookings = await response.json();
 
         bookingTableBody.innerHTML = "";

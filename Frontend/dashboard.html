@@ -2,71 +2,152 @@
 <html lang="en">
 <head>
 
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - FixLab</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>FixLab Admin Dashboard</title>
+
+    <link rel="stylesheet" href="dashboard.css">
 
 </head>
 <body>
 
-  <!-- DASHBOARD -->
-  <section class="dashboard">
+<script>
+const token = localStorage.getItem("adminToken");
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
+if (!token) {
+    window.location.href = "admin-login.html";
+}
+</script>
 
-      <h2>FixLab</h2>
+<div class="dashboard">
 
-      <ul>
+    <!-- Sidebar -->
+    <aside class="sidebar">
 
-        <li>Dashboard</li>
+        <div class="logo">
+            <h2>🔧 FixLab</h2>
+        </div>
 
-        <li>Bookings</li>
+        <ul class="menu">
 
-        <li>Customers</li>
+            <li class="active">🏠 Dashboard</li>
 
-        <li>Settings</li>
+            <li>📱 Bookings</li>
 
-      </ul>
+            <li>👥 Customers</li>
 
-    </div>
+            <li>⚙ Settings</li>
 
-    <!-- MAIN CONTENT -->
-    <div class="dashboard-content">
+        </ul>
 
-      <h1>Repair Bookings</h1>
+        <button id="logoutBtn">
+            🚪 Logout
+        </button>
 
-      <!-- BOOKINGS TABLE -->
-      <table>
+    </aside>
 
-        <thead>
+    <!-- Main Content -->
+    <main class="main-content">
 
-          <tr>
+        <header>
 
-            <th>Name</th>
+            <h1>Admin Dashboard</h1>
 
-            <th>Phone</th>
+            <p>Welcome back, Admin 👋</p>
 
-            <th>Repair</th>
+        </header>
 
-            <th>Brand</th>
+        <!-- Statistics -->
+        <section class="stats">
 
-          </tr>
+            <div class="card">
 
-        </thead>
+                <h3>Total Bookings</h3>
 
-        <tbody id="bookingTableBody">
+                <h2 id="totalBookings">0</h2>
 
-        </tbody>
+            </div>
 
-      </table>
+            <div class="card">
 
-    </div>
+                <h3>Pending</h3>
 
-  </section>
+                <h2 id="pendingBookings">0</h2>
 
-  <script src="app.js"></script>
+            </div>
+
+            <div class="card">
+
+                <h3>In Progress</h3>
+
+                <h2 id="progressBookings">0</h2>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Completed</h3>
+
+                <h2 id="completedBookings">0</h2>
+
+            </div>
+
+        </section>
+
+        <!-- Search -->
+        <section class="search-section">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search customer..."
+            >
+
+        </section>
+
+        <!-- Table -->
+        <section class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Phone</th>
+
+                        <th>Repair</th>
+
+                        <th>Brand</th>
+
+                        <th>Problem</th>
+
+                        <th>Status</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="bookingTableBody">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="dashboard.js"></script>
 
 </body>
 </html>
