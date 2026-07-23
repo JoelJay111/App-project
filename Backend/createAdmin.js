@@ -10,25 +10,31 @@ mongoose.connect(process.env.MONGODB_URI)
 
     const hashedPassword = await bcrypt.hash("admin123", 10);
 
-    const admin = new Admin({
+    await Admin.findOneAndUpdate(
 
-        username: "admin",
+        { username: "admin" },
 
-        password: hashedPassword
+        {
+            username: "admin",
+            password: hashedPassword
+        },
 
-    });
+        {
+            upsert: true,
+            new: true
+        }
 
-    await admin.save();
+    );
 
-    console.log("✅ Admin created successfully!");
+    console.log("✅ Admin password updated successfully!");
 
-    process.exit();
+    mongoose.connection.close();
 
 })
 .catch((err) => {
 
-    console.log(err);
+    console.error(err);
 
-    process.exit();
+    mongoose.connection.close();
 
 });

@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+console.log(process.env.JWT_SECRET);
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -57,6 +59,28 @@ app.post("/api/bookings", async (req, res) => {
       error: error.message,
     });
   }
+});
+
+
+// Delete Booking
+app.delete("/api/bookings/:id", async (req, res) => {
+
+    try {
+
+        await Booking.findByIdAndDelete(req.params.id);
+
+        res.json({
+            message: "Booking deleted successfully."
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            message: error.message
+        });
+
+    }
+
 });
 
 // =============================
